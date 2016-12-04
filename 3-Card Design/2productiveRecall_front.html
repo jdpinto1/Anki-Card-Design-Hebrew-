@@ -1,0 +1,85 @@
+<!-- WITH IMAGE -->
+{{#Image}}
+
+	<div class=topGlossBG>
+        
+        <!-- WITH SHOW GLOSS? -->
+		{{#Show gloss?}}
+			{{Gloss}}
+			<br>
+            {{Image}}
+		{{/Show gloss?}}
+        
+        <!-- WITHOUT SHOW GLOSS? -->
+        {{^Show gloss?}}
+            <div style="padding-top: 25px;">
+                {{Image}}
+            </div>
+        {{/Show gloss?}}
+        
+        <!-- ADDITIONAL -->
+		{{#Additional}}
+            <div id=additionalTopText>
+                {{Additional}}
+            </div>
+		{{/Additional}}
+        
+	</div>
+
+    <!-- GLOSS BUTTON -->
+	{{^Show gloss?}}
+		<div class=glossButton onclick="showGloss()">
+			תרגום
+		</div>
+		<div id=glossBG>
+			{{Gloss}}
+		</div>
+	{{/Show gloss?}}
+{{/Image}}
+
+
+<!------------------->
+<!-- WITHOUT IMAGE -->
+{{^Image}}
+	<div class=topGlossBG>
+		{{Gloss}}
+        
+        <!-- ADDITIONAL -->
+		{{#Additional}}
+			<br>{{Additional}}
+		{{/Additional}}
+        
+	</div>
+{{/Image}}
+
+
+<!----------------------------->
+<!-- SCRIPT FOR GLOSS BUTTON -->
+<script>
+    
+    document.addEventListener("keypress", buttonKeyPress);
+    var vis = 0;
+    
+	function showGloss() {
+        if (vis == 0) {
+            document.getElementById("glossBG").style.visibility= "visible";
+            vis = 1;
+        } else {
+            document.getElementById("glossBG").style.visibility= "hidden";
+            vis = 0;
+        }
+	}
+    
+    function buttonKeyPress(event) {
+        var x = event.which || event.keyCode;
+        if (x == 44) {
+            if (vis == 0) {
+                document.getElementById("glossBG").style.visibility= "visible";
+                vis = 1;
+            } else {
+                document.getElementById("glossBG").style.visibility= "hidden";
+                vis = 0;
+            }
+        }
+    }
+</script>

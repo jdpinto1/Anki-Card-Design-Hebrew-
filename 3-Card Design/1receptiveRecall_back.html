@@ -1,0 +1,96 @@
+{{FrontSide}}
+
+
+<!-- WITH IMAGE -->
+{{#Image}}
+
+	<div class=bottomDefBG>
+        
+        <!-- SHOW GLOSS? -->
+		{{#Show gloss?}}
+			{{Gloss}}
+			<br>
+		{{/Show gloss?}}
+        
+		{{Image}}
+		
+        <!-- HEBREW VOWELED -->
+        {{#Hebrew-voweled}}
+            <div style="direction:rtl">{{Hebrew-voweled}}</div>
+        {{/Hebrew-voweled}}
+        
+        <!-- ADDITIONAL INFO -->
+		{{#Additional}}
+            <div id=additionalBottomText>
+                {{Additional}}
+            </div>
+		{{/Additional}}
+        
+	</div>
+
+    <!-- GLOSS BUTTON -->
+	{{^Show gloss?}}
+		<div class=glossButton onclick="showGloss()">
+			תרגום
+		</div>
+		<div id=glossBG>
+			{{Gloss}}
+			<br><a href="http://context.reverso.net/translation/hebrew-english/{{Hebrew}}">In Context</a>
+		</div>
+	{{/Show gloss?}}
+
+{{/Image}}
+
+
+<!------------------->
+<!-- WITHOUT IMAGE -->
+{{^Image}}
+	<div class=bottomDefBG>
+		{{Gloss}}
+        
+        <!-- HEBREW VOWELED -->
+        {{#Hebrew-voweled}}
+            <div style="direction:rtl">{{Hebrew-voweled}}</div>
+        {{/Hebrew-voweled}}
+        
+        <!-- ADDITIONAL INFO -->
+		{{#Additional}}
+            <div id=additionalBottomText>
+                {{Additional}}
+            </div>
+		{{/Additional}}
+        
+	</div>
+{{/Image}}
+
+
+<!----------------------------->
+<!-- SCRIPT FOR GLOSS BUTTON -->
+<script>
+    
+    document.addEventListener("keypress", buttonKeyPress);
+    var vis = 0;
+    
+	function showGloss() {
+        if (vis == 0) {
+            document.getElementById("glossBG").style.visibility= "visible";
+            vis = 1;
+        } else {
+            document.getElementById("glossBG").style.visibility= "hidden";
+            vis = 0;
+        }
+	}
+    
+    function buttonKeyPress(event) {
+        var x = event.which || event.keyCode;
+        if (x == 44) {
+            if (vis == 0) {
+                document.getElementById("glossBG").style.visibility= "visible";
+                vis = 1;
+            } else {
+                document.getElementById("glossBG").style.visibility= "hidden";
+                vis = 0;
+            }
+        }
+    }
+</script>

@@ -1,0 +1,109 @@
+<!-- WITH IMAGE -->
+{{#Image}}
+
+    <!-- TOP -->
+	<div class=topTermBG>
+		<div id=inputBar>
+			{{type:Hebrew}}
+		</div>
+	</div>
+
+    <!-- BOTTOM -->
+	<div class=bottomDefBG>
+        
+        <!-- SHOW GLOSS? -->
+		{{#Show gloss?}}
+			{{Gloss}}
+			<br>
+		{{/Show gloss?}}
+        
+		{{Image}}
+        
+        <!-- ADDITIONAL -->
+		{{#Additional}}
+            <div id=additionalBottomText>
+                {{Additional}}
+            </div>
+		{{/Additional}}
+        
+        <!-- AUDIO -->
+		{{#Audio}}
+			{{Audio}}
+		{{/Audio}}
+        
+	</div>
+
+    <!-- GLOSS BUTTON -->
+	{{^Show gloss?}}
+		<div class=glossButton onclick="showGloss()">
+			תרגום
+		</div>
+		<div id=glossBG>
+			{{Gloss}}
+		</div>
+	{{/Show gloss?}}
+
+{{/Image}}
+
+
+<!------------------->
+<!-- WITHOUT IMAGE -->
+{{^Image}}
+
+	<!-- TOP -->
+	<div class=topTermBG>
+		<div id=inputBar>
+			{{type:Hebrew}}
+		</div>
+	</div>
+
+    <!-- BOTTOM -->
+	<div class=bottomDefBG>
+		{{Gloss}}
+        
+		<!-- ADDITIONAL -->
+		{{#Additional}}
+            <div id=additionalBottomText>
+                {{Additional}}
+            </div>
+		{{/Additional}}
+        
+        <!-- AUDIO -->
+		{{#Audio}}
+			{{Audio}}
+		{{/Audio}}
+        
+	</div>
+{{/Image}}
+
+
+<!----------------------------->
+<!-- SCRIPT FOR GLOSS BUTTON -->
+<script>
+    
+    document.addEventListener("keypress", buttonKeyPress);
+    var vis = 0;
+    
+	function showGloss() {
+        if (vis == 0) {
+            document.getElementById("glossBG").style.visibility= "visible";
+            vis = 1;
+        } else {
+            document.getElementById("glossBG").style.visibility= "hidden";
+            vis = 0;
+        }
+	}
+    
+    function buttonKeyPress(event) {
+        var x = event.which || event.keyCode;
+        if (x == 44) {
+            if (vis == 0) {
+                document.getElementById("glossBG").style.visibility= "visible";
+                vis = 1;
+            } else {
+                document.getElementById("glossBG").style.visibility= "hidden";
+                vis = 0;
+            }
+        }
+    }
+</script>
